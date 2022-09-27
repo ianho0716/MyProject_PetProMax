@@ -1,0 +1,97 @@
+﻿@model PetproMax.Models.HomeLessAnimal
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+}
+
+<h2>刪除流浪動物中途資料</h2>
+
+<p style="font-size:5em;color:red;">Are you sure you want to delete this?</p>
+<div>
+    <h4>HomeLessAnimal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.MemberName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalSex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalSex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tsmc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tsmc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalPhotoFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalPhotoFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HLADescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HLADescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FamilyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FamilyName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="刪除" class="btn btn-danger" />
+        @Html.ActionLink("返回訂單管理", "Index", null, new { @class = "btn btn-dark btn-sm" })
+    </div>
+    }
+</div>

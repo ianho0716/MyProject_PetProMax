@@ -1,0 +1,70 @@
+﻿@model PetproMax.Models.Applied
+
+@{
+    ViewBag.Title = "認養申請";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h1>認養申請</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal h4">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnimalID, htmlAttributes: new { @class = "control-label col-md-8" })        
+        <div class="col-md-4">
+            <a href="~/NewFolder1/HomeLessAnimalList.html" target="_blank" class="btn btn-outline-dark">連結請點我</a>
+            @Html.EditorFor(model => model.AnimalID, new { htmlAttributes = new { @class = "form-control col-6" } })
+            @Html.ValidationMessageFor(model => model.AnimalID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FamiliesName, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-4">
+            @Html.EnumDropDownListFor(model => model.FamiliesName, htmlAttributes: new { @class = "form-control col-12" })
+            @Html.ValidationMessageFor(model => model.FamiliesName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-10" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control col-12" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.MemberID, "MemberID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor("MemberID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MemberID, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <h5 style="color:red;">溫馨提示：請務必核對清楚再送出喔!!!</h5>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="送出申請" class="btn btn-success" />
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("返回認養申請首頁", "Show", null, new { @class = "btn btn-dark" })
+    </p>
+</div>
+    
+}
+
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>

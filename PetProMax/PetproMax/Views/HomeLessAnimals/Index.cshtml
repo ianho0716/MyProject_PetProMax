@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PetproMax.Models.HomeLessAnimal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+}
+
+<h2>流浪動物中途管理</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeLessAnimalName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalSex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tsmc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalPhotoFile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GetDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HLADescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FamilyName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Member.MemberName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HomeLessAnimalName)
+    </td>
+    <td>
+        @(item.AnimalSex ? "男生" : "女生")
+    </td>
+    <td>
+        @(item.Type ? "狗" : "貓")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Breed)
+    </td>
+    <td>
+        @(item.Tsmc ? "是" : "否")
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.AnimalPhotoFile)*@
+        <img src="~/AnimalPhotos/@(item.HomeLessAnimalName).jpg" width="150" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GetDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HLADescription)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpireDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FamilyName)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.HomeLessAnimalID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.HomeLessAnimalID }) |*@
+        @Html.ActionLink("刪除", "Delete", new { id = item.HomeLessAnimalID }, new { @class = "btn btn-danger btn-sm" })
+    </td>
+</tr>
+}
+
+</table>

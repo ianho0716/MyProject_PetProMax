@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PetproMax.Models.Employees>
+@using PetproMax.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+    int employeeID = ((Employees)Session["admin"]).EmployeeID;
+}
+
+<h2>管理員管理</h2>
+
+<p>
+    @if (employeeID == 1)
+    {
+        @Html.ActionLink("新增管理員", "Create", null, new { @class = "btn btn-info btn-xl" })
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>*@
+            <td>
+                @if (employeeID == 1)
+                {
+                    @Html.ActionLink("修改", "Edit", new { id = item.EmployeeID }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("詳情", "Details", new { id = item.EmployeeID }, new { @class = "btn btn-secondary btn-sm" })
+                    @Html.ActionLink("刪除", "Delete", new { id = item.EmployeeID }, new { @class = "btn btn-danger btn-sm" })
+                }
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,44 @@
+﻿@model PetproMax.Models.HomeLessAnimal
+    @using PetproMax.Models;
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+    int memberID = ((Members)Session["user"]).MemberID;
+}
+
+<div class="p-3">
+
+    <div class="card border-info">
+        <div class="card-header bg-light text-black">
+            <h3>@Html.DisplayFor(model => model.HomeLessAnimalName)</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>品種：@Html.DisplayFor(model => model.Breed)</h4>
+                    <h4>詳情：@Html.DisplayFor(model => model.HLADescription)</h4>
+                    <h4>拾獲日期：@Html.DisplayFor(model => model.GetDate)</h4>
+                    <h4>可中途期限：@Html.DisplayFor(model => model.ExpireDate)</h4>
+                    <h4>期限內無飼主認領，將送往：@Html.DisplayFor(model => model.FamilyName)</h4>
+                </div>
+                <div class="col-md-4">
+                    @{
+                        var photo = Model.AnimalPhotoFile == null ? "defaultPhoto.png" : Model.AnimalPhotoFile;
+                    }
+                    <img src="~/AnimalPhotos/@photo " class="img-thumbnail" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<p>
+    @if (memberID == Model.MemberID)
+    {
+        @Html.ActionLink("修改", "Edit", new { id = Model.HomeLessAnimalID }, new { @class = "btn btn-danger" })
+    }
+    @Html.ActionLink("返回流浪動物中途首頁", "Show", null, new { @class = "btn btn-dark" })
+</p>

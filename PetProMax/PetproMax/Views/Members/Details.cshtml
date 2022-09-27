@@ -1,0 +1,37 @@
+﻿@model PetproMax.Models.Members
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+}
+
+
+
+<div class="p-3">
+
+    <div class="card border-info">
+        <div class="card-header bg-info text-white">
+            <h3>@Html.DisplayFor(model => model.MemberName)</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>生日:@Html.DisplayFor(model => model.MemberBirthday)</h4>
+                    <h4>
+                        帳號:@Html.DisplayFor(model => model.Account)
+                    </h4>
+                    <h4> 密碼:●●●●●●●●●●●●●●●●●●●●●●●●●●</h4>
+                </div>                
+            </div>
+        </div>
+        <div class="card-footer text-right bg-info text-white">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("返回會員管理", "Index", null, new { @class = "btn btn-dark btn-sm" })
+    </p>
+
+</div>
+
+

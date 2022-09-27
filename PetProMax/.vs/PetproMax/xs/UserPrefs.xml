@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{F312D53D-7186-44C0-96BE-A4A292E96FF2}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PetproMax/Views/Home/Index.cshtml">
+    <Files>
+      <File FileName="PetproMax/Models/Members.cs" Line="39" Column="26" />
+      <File FileName="PetproMax/Models/Employees.cs" Line="35" Column="22" />
+      <File FileName="PetproMax/Models/OrderDetails.cs" Line="25" Column="33" />
+      <File FileName="PetproMax/Models/Orders.cs" Line="42" Column="19" />
+      <File FileName="PetproMax/Models/Products.cs" Line="16" Column="42" />
+      <File FileName="PetproMax/Models/Shippers.cs" Line="1" Column="1" />
+      <File FileName="PetproMax/Models/PayTypes.cs" Line="20" Column="2" />
+      <File FileName="PetproMax/Models/Applied.cs" Line="1" Column="1" />
+      <File FileName="PetproMax/Models/FindPet.cs" Line="1" Column="1" />
+      <File FileName="PetproMax/Models/HomeLessAnimal.cs" Line="1" Column="1" />
+      <File FileName="PetproMax/Views/Home/Index.cshtml" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PetproMax" expanded="True">
+            <Node name="PetproMax" expanded="True">
+              <Node name="MemberPhotos" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="NewFolder1" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.PetproMax PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

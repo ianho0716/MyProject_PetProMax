@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="zh-hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>全國流浪動物待領養資訊</title>
+    <style>
+        .detail {
+            overflow-y: scroll;
+            height: 200px;
+            text-align: left;
+            color: purple;
+            display: none;
+        }
+
+        .farm {
+            width: 450px;
+            height: 480px;
+            box-shadow: 0px 0px 20px blue;
+            background-color: #f5ecf0;
+            border-radius: 50px;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 15px;
+        }
+
+        div > img {
+            width: inherit;
+        }
+
+        #container {
+            width: auto;
+            margin: auto;
+            text-align: center;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+            opacity: 0.2;
+        }
+
+            .bg img {
+                min-height: 100%;
+                width: 100%;
+            }
+
+        .hide {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            white-space: normal;
+        }
+
+        .modal-footer {
+            justify-content: space-between !important;
+            z-index: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <img src="farm.jpg" />
+    </div>
+
+    <div id="container">
+        <marquee behavior="alternate"
+                 scrollamount="12"
+                 style="
+          font-size: 5em;
+          font-weight: bolder;
+          text-shadow: 0px 0px 10px red;
+        ">
+            全國流浪動物待領養資訊
+        </marquee>
+        <!--<h1>
+            輸入城市查詢：<input id="txtCity" type="text" style="font-size: 2rem" />
+            <input style="font-size: 2rem"
+                   id="Button1"
+                   type="button"
+                   value="查詢"
+                   onclick="getCityData()" />
+        </h1>-->
+    </div>
+
+    <script src="Scripts/jquery-3.6.0.min.js"></script>
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        function myFunction(i) {
+            var x = document.getElementById("detail_" + i);
+            var y = document.getElementById("farm_" + i);
+            if (window.getComputedStyle(x).display === "none") {
+                (x.style.display = "block"), (y.style.height = "auto");
+            } else {
+                (x.style.display = "none"), (y.style.height = "480px");
+            }
+        };
+
+        $("#container>marquee:first-child").hide();
+        $("#container>marquee:first-child").slideDown(2000);
+
+        var item = "";
+
+        $('#container').append("<div id='CityData'></div>")
+        getCityData();
+
+        function getCityData() {
+            $('#CityData').empty()
+
+            $.ajax({
+                type: "get",
+                url: `https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL`,
+                success: function (data) {
+                console.log(data);
+
+                    for (var i = 0; i < data.length; i++) {
+                        item = `<div style="float:left;" class="card col-12 col-sm-6 col-md-4 p-3  border-primary, farm" id="farm_${i}">
+                                    <div class="center">
+                                        <h2 style="color:darkblue;"> ${data[i].animal_place} </h1>
+                                        <p><img src="${data[i].album_file}" style="height: 300px; width: 350px;max-height: 100%;max-width: 100%;" /></p>
+                                        <button onclick="myFunction(${i})" type="button" class="btn btn-danger" data-toggle="modal">特殊備註</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${i}">詳細資料</button>
+                                        <h4 class="detail" id="detail_${i}"> ${data[i].animal_remark} </h4>
+                                        </div>
+                                    </div>
+
+                                        <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title m-auto" id="exampleModalLabel">浪浪編號：${data[i].animal_id}</h1>
+                                                        <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body row">
+                                                        <div class="col-6">
+                                                            <img src="${data[i].album_file}" class="card-img-top">
+                                                        </div>
+                                                        <div class="col-6" style="font-size:2rem;">
+                                                            <p class="card-text">動物的類型：${data[i].animal_kind}</p>
+                                                            <p class="card-text">動物品種：${data[i].animal_Variety}</p>
+                                                            <p class="card-text">動物性別：${data[i].animal_sex}</p>
+                                                            <p class="card-text">動物體型：${data[i].animal_bodytype}</p>
+                                                            <p class="card-text">動物尋獲地：${data[i].animal_foundplace}</p>
+                                                            <p class="card-text">開放認養時間(起)：${data[i].animal_opendate}</p>
+                                                            <p class="card-text">開放認養時間(迄)：${data[i].animal_closeddate}</p>
+                                                            <p class="card-text">資料更新時間：${data[i].cDate}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <div>
+                                                            <div style="font-size:2rem;text-align:left;">
+                                                                <p>動物所屬收容所名稱：${data[i].shelter_name}</p>
+                                                                <p>連絡電話：${data[i].shelter_tel}</p>
+                                                                <p>地址：${data[i].shelter_address} | <a href="https://www.google.com.tw/maps/search/${data[i].shelter_address}" target="_blank">點我看地圖</a></p>
+                                                            </div>
+                                                        </div>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">返回列表</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
+
+                        $("#CityData").append(item);
+                    }
+                },
+            });
+        }
+
+
+    </script>
+</body>
+</html>

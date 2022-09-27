@@ -1,0 +1,142 @@
+﻿@model PetproMax.Models.HomeLessAnimal
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h1>新增流浪動物中途資料</h1>
+
+@using (Html.BeginForm("Create", "HomeLessAnimals", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal h4">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.HomeLessAnimalName, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.HomeLessAnimalName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HomeLessAnimalName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnimalSex, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @*@Html.EditorFor(model => model.AnimalSex)*@
+                <input class="check-box" data-val="true" data-val-required="請選擇性別" id="boy2" name="AnimalSex" type="radio" value="true" />
+                <span>男生</span>
+                <input class="check-box" data-val="true" data-val-required="請選擇性別" id="girl2" name="AnimalSex" type="radio" value="false" />
+                <span>女生</span>
+                @Html.ValidationMessageFor(model => model.AnimalSex, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @*@Html.EditorFor(model => model.Type)*@
+                <input class="check-box" data-val="true" data-val-required="請選擇種類" id="dog2" name="Type" type="radio" value="true" />
+                <span>狗</span>
+                <input class="check-box" data-val="true" data-val-required="請選擇種類" id="cat2" name="Type" type="radio" value="false" />
+                <span>貓</span>
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Breed, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Breed, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Breed, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tsmc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @*@Html.EditorFor(model => model.Tsmc)*@
+                <input class="check-box" data-val="true" data-val-required="是否有晶片" id="yes2" name="Tsmc" type="radio" value="true" />
+                <span>是</span>
+                <input class="check-box" data-val="true" data-val-required="是否有晶片" id="No2" name="Tsmc" type="radio" value="false" />
+                <span>否</span>
+                @Html.ValidationMessageFor(model => model.Tsmc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnimalPhotoFile, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @*@Html.EditorFor(model => AnimalPhotoFile, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.TextBoxFor(Model => AnimalPhotoFile, new {type="file",@class= "form-control",name="photo" })*@
+            <input id="photo" type="file" class="form-control" name="photo" />
+            @Html.ValidationMessageFor(model => model.AnimalPhotoFile, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.GetDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GetDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HLADescription, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.HLADescription, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HLADescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExpireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.ExpireDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExpireDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FamilyName, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-4">
+            @Html.EnumDropDownListFor(model => model.FamilyName, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FamilyName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.MemberID, "MemberID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MemberID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MemberID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <h5 style="color:red;">溫馨提示：請務必核對清楚再送出喔!!!</h5>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="新增" class="btn btn-success" />
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("返回流浪動物中途首頁", "Show", null, new { @class = "btn btn-dark" })
+    </p>
+</div>
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+

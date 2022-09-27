@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PetproMax.Models.Applied>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+}
+
+<h2>領養申請管理</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FamiliesName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.MemberName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FamiliesName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @*@Html.ActionLink("編輯", "Edit", new { id=item.AppliedID }, new { @class = "btn btn-warning btn-sm" })*@
+            @Html.ActionLink("刪除", "Delete", new { id=item.AppliedID }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

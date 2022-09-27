@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PetproMax.Models.Applied>
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h2>領養申請首頁</h2>
+
+<p>
+    @Html.ActionLink("新增申請", "Create", null, new { @class = "btn btn-info btn-xl" })
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalID)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.FamiliesName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.MemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnimalID)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.FamiliesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>*@
+            <td>
+                @Html.ActionLink("查看詳情", "Details", new { id = item.AppliedID }, new { @class = "btn btn-secondary btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PetproMax.Models.FindPet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+}
+
+<h2>尋找寵物管理</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetSex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetBreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetTsmc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetPhotoFile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Member.MemberName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PetName)
+    </td>
+    <td>
+        @(item.PetSex ? "男生" : "女生")
+    </td>
+    <td>
+        @(item.PetType ? "狗" : "貓")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PetBreed)
+    </td>
+    <td>
+        @(item.PetTsmc ? "是" : "否")
+    </td>
+    <td>
+        <img src="~/PetPhotos/@(item.PetName).jpg" width="150" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PetDescription)
+    </td>
+    <td>
+        @*@Html.ActionLink("編輯", "Edit", new { id = item.FindPetID }, new { @class = "btn btn-warning btn-sm" })*@
+        @Html.ActionLink("刪除", "Delete", new { id = item.FindPetID }, new { @class = "btn btn-danger btn-sm" })
+        @*@Html.ActionLink("Details", "Details", new { id=item.FindPetID })*@
+    </td>
+</tr>
+}
+
+</table>

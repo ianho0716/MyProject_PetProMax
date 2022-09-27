@@ -1,0 +1,129 @@
+﻿@model PetproMax.Models.FindPet
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<h1>新增走失寵物</h1>
+
+@using (Html.BeginForm("Create", "FindPets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal h4">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.PetName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PetName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetSex, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @*@Html.EditorFor(model => model.PetSex)*@
+                    <input class="check-box" data-val="true" data-val-required="請選擇性別" id="boy1" name="PetSex" type="radio" value="true" />
+                    <span>男生</span>
+                    <input class="check-box" data-val="true" data-val-required="請選擇性別" id="girl1" name="PetSex" type="radio" value="false" />
+                    <span>女生</span>
+                    @Html.ValidationMessageFor(model => model.PetSex, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @*@Html.EditorFor(model => model.PetType)*@
+                    <input class="check-box" data-val="true" data-val-required="請選擇種類" id="dog1" name="PetType" type="radio" value="true" />
+                    <span>狗</span>
+                    <input class="check-box" data-val="true" data-val-required="請選擇種類" id="cat1" name="PetType" type="radio" value="false" />
+                    <span>貓</span>
+                    @Html.ValidationMessageFor(model => model.PetType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetBreed, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.PetBreed, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PetBreed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetTsmc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @*@Html.EditorFor(model => model.PetTsmc)*@
+                    <input class="check-box" data-val="true" data-val-required="是否有晶片" id="yes1" name="PetTsmc" type="radio" value="true" />
+                    <span>是</span>
+                    <input class="check-box" data-val="true" data-val-required="是否有晶片" id="No1" name="PetTsmc" type="radio" value="false" />
+                    <span>否</span>
+                    @Html.ValidationMessageFor(model => model.PetTsmc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetPhotoFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @*@Html.EditorFor(model => PetPhotoFile, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.TextBoxFor(Model => PetPhotoFile, new {type="file",@class= "form-control",name="photo" })*@
+                <input id="photo" type="file" class="form-control" name="photo" />
+                @Html.ValidationMessageFor(model => model.PetPhotoFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LostDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.LostDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LostDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PetDescription, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.PetDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PetDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.MemberID, "MemberID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MemberID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MemberID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <h5 style="color:red;">溫馨提示：請務必核對清楚再送出喔!!!</h5>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="確認送出" class="btn btn-success" />
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("返回尋找寵物首頁", "Show", null, new { @class = "btn btn-dark" })
+        </p>
+    </div>
+    
+}
+
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
